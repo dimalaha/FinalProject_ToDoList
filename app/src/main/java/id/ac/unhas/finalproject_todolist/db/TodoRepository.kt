@@ -7,6 +7,7 @@ import id.ac.unhas.todolist.db.TodoDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.util.*
 
 class TodoRepository (application: Application) {
     private val todoDao: TodoDao?
@@ -34,17 +35,23 @@ class TodoRepository (application: Application) {
         }
     }
 
-    fun deleteTodo(toDo: ToDo) {
-        runBlocking {
+    fun addDueDate(dueDate: Date) = runBlocking {
+        this.launch(Dispatchers.IO) {
+                todoDao?.addDueDate(dueDate)
+            }
+        }
+
+        fun deleteTodo(toDo: ToDo) {
+            runBlocking {
+                this.launch(Dispatchers.IO) {
+                    todoDao?.deleteTodo(toDo)
+                }
+            }
+        }
+
+        fun updateTodo(toDo: ToDo) = runBlocking {
             this.launch(Dispatchers.IO) {
-                todoDao?.deleteTodo(toDo)
+                todoDao?.updateTodo(toDo)
             }
         }
     }
-
-    fun updateTodo(toDo: ToDo) = runBlocking {
-        this.launch(Dispatchers.IO) {
-            todoDao?.updateTodo(toDo)
-        }
-    }
-}
