@@ -29,18 +29,6 @@ class TodoRepository (application: Application) {
         }
     }
 
-    fun AddNotes(toDo: ToDo) = runBlocking {
-        this.launch(Dispatchers.IO) {
-            todoDao?.addNote(toDo)
-        }
-    }
-
-    fun addDueDate(toDo: ToDo) = runBlocking {
-        this.launch(Dispatchers.IO) {
-                todoDao?.addDueDate(toDo)
-            }
-        }
-
         fun deleteTodo(toDo: ToDo) {
             runBlocking {
                 this.launch(Dispatchers.IO) {

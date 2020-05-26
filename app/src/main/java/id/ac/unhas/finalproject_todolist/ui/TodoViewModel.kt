@@ -16,16 +16,8 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         todoRepository.AddTodos(toDo)
     }
 
-    fun addNotes(toDo: ToDo) {
-        todoRepository.AddNotes(toDo)
-    }
-
     fun getTodos(): LiveData<List<ToDo>>? {
         return lists
-    }
-
-    fun addDueDate(toDo: ToDo) {
-        todoRepository.addDueDate(toDo)
     }
 
     fun deleteTodo(toDo: ToDo) {

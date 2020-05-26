@@ -8,9 +8,10 @@ import java.util.*
 data class ToDo(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    // val dateCreate: String,
-    // val dateUpdated : String,
+    var dateCreate: String? = null,
+    var dateUpdated : String? = null,
     var dueDate: String? = null,
+    var dueHour: String? = null,
     var title: String,
     var note: String
 )
