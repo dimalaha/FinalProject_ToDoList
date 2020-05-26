@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">FinalProject_ToDoList</string>
-    
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="add">Add To Do</string>
+    <string name="delete">Delete To Do</string>
+    <string name="update">Update To Do</string>
+    <string name="todo_done">To Do Complete</string>
+    <string name="todo_title">Title</string>
+    <string name="todo_notes">Notes</string>
+    <string name="duedate">Due Date</string>
 </resources>
