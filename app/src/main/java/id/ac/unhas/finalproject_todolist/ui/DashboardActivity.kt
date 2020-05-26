@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
-import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -60,7 +58,7 @@ class DashboardActivity : AppCompatActivity() {
         builder.setItems(items) { dialog, which ->
             when (which) {
                 0 -> {
-                   EditTodo(toDo)
+                    EditTodo(toDo)
                 }
                 1 -> {
                     todoViewModel.deleteTodo(toDo)
@@ -71,7 +69,7 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun EditTodo(toDo: ToDo) {
-        val Intent = Intent(this, UpdateTodo::class.java)
-        startActivity(Intent)
+        val intent = Intent(this, UpdateTodo::class.java)
+        startActivity(intent)
     }
 }
