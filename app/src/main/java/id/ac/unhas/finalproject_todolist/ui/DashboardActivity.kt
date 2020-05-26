@@ -51,32 +51,6 @@ class DashboardActivity : AppCompatActivity() {
     private fun addTodo() {
         val Intent = Intent(this, AddTodo::class.java)
         startActivity(Intent)
-        val alert = AlertDialog.Builder(this)
-
-
-
-
-        val editText = EditText(applicationContext)
-        editText.hint = "Enter your To Do"
-
-        alert.setTitle("New To Do")
-        alert.setView(editText)
-
-        alert.setPositiveButton("Save") { dialog, which ->
-            todoViewModel.addTodos(
-                ToDo(
-                    title = editText.text.toString(),
-                    note = editText.text.toString(),
-                    dueDate = editText.text.toString())
-            )
-            dialog.dismiss()
-        }
-
-        alert.setNegativeButton("Cancel") { dialog, which ->
-            dialog.dismiss()
-        }
-
-        alert.show()
     }
 
     private fun showAlertMenu(toDo: ToDo) {
