@@ -35,9 +35,9 @@ class TodoRepository (application: Application) {
         }
     }
 
-    fun addDueDate(dueDate: Date) = runBlocking {
+    fun addDueDate(toDo: ToDo) = runBlocking {
         this.launch(Dispatchers.IO) {
-                todoDao?.addDueDate(dueDate)
+                todoDao?.addDueDate(toDo)
             }
         }
 

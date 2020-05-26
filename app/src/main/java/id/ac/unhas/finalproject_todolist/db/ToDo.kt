@@ -7,9 +7,10 @@ import java.util.*
 @Entity (tableName = "todo")
 data class ToDo(
     @PrimaryKey(autoGenerate = true)
-    val dateCreate: Date? = null,
-    val dateUpdated : Date? = null,
-    val dueDate: Date?= null,
+    val id: Int? = null,
+    // val dateCreate: String,
+    // val dateUpdated : String,
+    var dueDate: String? = null,
     var title: String,
     var note: String
 )
