@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject_ToDoList</string>
+    <string name="app_name">To Do List</string>
 
     <string name="add">Add To Do</string>
     <string name="delete">Delete To Do</string>
@@ -8,4 +8,7 @@
     <string name="todo_title">Title</string>
     <string name="todo_notes">Notes</string>
     <string name="duedate">Due Date</string>
+    <string name="set_duedate">Due Date</string>
+    <string name="set_time">Set Time</string>
+    <string name="at"> at </string>
 </resources>

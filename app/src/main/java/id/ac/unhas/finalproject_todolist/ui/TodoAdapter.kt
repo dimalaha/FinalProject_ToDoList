@@ -9,6 +9,7 @@ import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
 import kotlinx.android.synthetic.main.activity_add_todo.view.*
 import kotlinx.android.synthetic.main.activity_dashboard2.view.*
+import kotlinx.android.synthetic.main.list_item.view.*
 
 class TodoAdapter (private val context: Context?, private val listener: (ToDo, Int) -> Unit) :
     RecyclerView.Adapter<TodoViewHolder>() {
@@ -40,9 +41,10 @@ class TodoAdapter (private val context: Context?, private val listener: (ToDo, I
 
 class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindItem(context: Context, toDo: ToDo, listener: (ToDo, Int) -> Unit) {
-        itemView.title.text = toDo.title
-        itemView.notes.text = toDo.note
-        itemView.duedate.text = toDo.dueDate
+        itemView.list_item_title.text = toDo.title
+        itemView.list_item_note.text = toDo.note
+        itemView.list_item_duedate.text = toDo.dueDate
+        itemView.list_item_duetime.text = toDo.dueHour
 
         itemView.setOnClickListener {
             listener(toDo, layoutPosition)
