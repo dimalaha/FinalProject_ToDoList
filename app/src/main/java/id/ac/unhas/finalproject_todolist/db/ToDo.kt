@@ -13,10 +13,10 @@ data class ToDo(
     val id: Int? = null,
 
     @ColumnInfo(name = "date_created")
-    var dateCreate: String? = null,
+    var dateCreate: Int? = null,
 
     @ColumnInfo(name = "date_updated")
-    var dateUpdated : String? = null,
+    var dateUpdated : Int? = null,
 
     @ColumnInfo(name = "due_date")
     var dueDate: String? = null,
