@@ -25,7 +25,7 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun updateTodo(toDo: ToDo) {
-        todoRepository.deleteTodo(toDo)
+        todoRepository.updateTodo(toDo)
     }
 
 }

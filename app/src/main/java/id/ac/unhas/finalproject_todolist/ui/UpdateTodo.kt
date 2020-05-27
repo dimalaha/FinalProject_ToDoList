@@ -5,13 +5,13 @@ import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
 import java.text.SimpleDateFormat
+import java.time.ZonedDateTime
 import java.util.*
 
 class UpdateTodo : AppCompatActivity() {
@@ -42,11 +42,10 @@ class UpdateTodo : AppCompatActivity() {
         editTime = findViewById(R.id.duetime_content)
         updateButton = findViewById(R.id.button_save)
 
-
         todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
 
         // get data for update
-        getDatafromDatabase()
+        getExtraData()
 
         editDueDate.setOnClickListener {
             setDueDate()
@@ -67,12 +66,12 @@ class UpdateTodo : AppCompatActivity() {
         return true
     }
 
-    private fun getDatafromDatabase() {
+    private fun getExtraData() {
         toDo = intent.getParcelableExtra("UPDATED_LIST")!!
         editTitle.setText(intent.getStringExtra(TITLE_UPDATE))
-        editNote.setText(intent.getStringExtra(NOTE_UPDATE))
         editDueDate.setText(intent.getStringExtra(DUE_DATE_UPDATE))
         editTime.setText(intent.getStringExtra(TIME_UPDATE))
+        editNote.setText(intent.getStringExtra(NOTE_UPDATE))
     }
 
     private fun setDueDate(){
@@ -81,14 +80,15 @@ class UpdateTodo : AppCompatActivity() {
         val year = calendar.get(Calendar.YEAR)
 
         // Date picker dialog
-        val datePicker = DatePickerDialog(
-            this@UpdateTodo,
-            DatePickerDialog.OnDateSetListener{
-                    view, year, month, date ->
-                editDueDate.setText("" + date + "-" + (month+1) + "-" + year)
-            }, year, month, date)
+        val datePicker = DatePickerDialog.OnDateSetListener{
+                view, year, month, date ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DATE, date)
+            editTime.setText(SimpleDateFormat("dd, MM, yyyy").format(calendar.time))
+        }
 
-        datePicker.show()
+        DatePickerDialog(this, datePicker, date, month, year).show()
     }
 
     private fun setDueTime(){
@@ -105,6 +105,11 @@ class UpdateTodo : AppCompatActivity() {
     }
 
     private fun updateTodo() {
+        val currentTime = ZonedDateTime.now()
+        val mill = currentTime.toInstant().epochSecond
+        val dateUpdated = mill.toInt()
+
+        toDo.dateUpdated = dateUpdated
         toDo.title = editTitle.text.toString().trim()
         toDo.note = editNote.text.toString().trim()
         toDo.dueDate = editDueDate.text.toString().trim()

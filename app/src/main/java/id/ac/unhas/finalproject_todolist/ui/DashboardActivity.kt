@@ -49,13 +49,6 @@ class DashboardActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     private fun addTodo() {
         val intent = Intent(this, AddTodo::class.java)
         startActivity(intent)
@@ -71,17 +64,7 @@ class DashboardActivity : AppCompatActivity() {
                     EditTodo(toDo)
                 }
                 1 -> {
-                    val alert = AlertDialog.Builder(this)
-                    alert.setTitle("Delete To Do?")
-                    alert.setMessage("Are you sure?")
-                    alert.setPositiveButton("Yes"){dialog, _ ->
-                        todoViewModel.deleteTodo(toDo)
-                        dialog.dismiss()
-                        Toast.makeText(this, "To Do Deleted", Toast.LENGTH_SHORT).show()
-                    }
-                    alert.setNegativeButton("No"){dialog, _ ->
-                        dialog.dismiss()
-                    }
+                    todoViewModel.deleteTodo(toDo)
 
                 }
             }
@@ -91,11 +74,12 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun EditTodo(toDo: ToDo) {
         val intent = Intent(this, UpdateTodo::class.java)
-            intent.putExtra(UpdateTodo.TITLE_UPDATE, toDo.title)
-            intent.putExtra(UpdateTodo.NOTE_UPDATE, toDo.note)
-            intent.putExtra(UpdateTodo.DUE_DATE_UPDATE, toDo.dueDate)
-            intent.putExtra(UpdateTodo.TIME_UPDATE, toDo.dueHour)
+            .putExtra("UPDATED_LIST", toDo)
+            .putExtra(UpdateTodo.TITLE_UPDATE, toDo.title)
+            .putExtra(UpdateTodo.NOTE_UPDATE, toDo.note)
+            .putExtra(UpdateTodo.DUE_DATE_UPDATE, toDo.dueDate)
+            .putExtra(UpdateTodo.TIME_UPDATE, toDo.dueHour)
 
-        startActivity(intent)
+        this.startActivity(intent)
     }
 }

@@ -5,14 +5,13 @@ import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
-import java.text.DateFormat.getDateInstance
 import java.text.SimpleDateFormat
+import java.time.ZonedDateTime
 import java.util.*
 
 class AddTodo : AppCompatActivity() {
@@ -62,14 +61,15 @@ class AddTodo : AppCompatActivity() {
         val year = calendar.get(Calendar.YEAR)
 
         // Date picker dialog
-        val datePicker = DatePickerDialog(
-            this@AddTodo,
-            DatePickerDialog.OnDateSetListener{
-                    view, year, month, date ->
-                editDueDate.setText("" + date + "-" + (month+1) + "-" + year)
-            }, year, month, date)
+        val datePicker = DatePickerDialog.OnDateSetListener{
+                view, year, month, date ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, month)
+            calendar.set(Calendar.DATE, date)
+            editTime.setText(SimpleDateFormat("dd, MM, yyyy").format(calendar.time))
+            }
 
-        datePicker.show()
+        DatePickerDialog(this, datePicker, date, month, year).show()
     }
 
     private fun setDueTime(){
@@ -86,17 +86,22 @@ class AddTodo : AppCompatActivity() {
     }
 
     private fun saveTodo() {
+        val currentTime = ZonedDateTime.now()
+        val mill = currentTime.toInstant().epochSecond
+
         val title = editTitle.text.toString().trim()
         val note = editNote.text.toString().trim()
         val dueDate = editDueDate.text.toString().trim()
         val time = editTime.text.toString().trim()
+        val createdDate = mill.toInt()
 
         todoViewModel.addTodos(
             ToDo(
                 dueDate = dueDate,
                 note = note,
                 title = title,
-                dueHour = time
+                dueHour = time,
+                dateCreate = createdDate
             )
         )
         finish()
