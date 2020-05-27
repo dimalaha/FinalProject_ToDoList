@@ -8,8 +8,10 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
+import java.text.DateFormat.getDateInstance
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -19,7 +21,7 @@ class AddTodo : AppCompatActivity() {
     private lateinit var editNote: EditText
     private lateinit var editTime: EditText
     private lateinit var editDueDate: EditText
-    private lateinit var saveButton: Button
+    private lateinit var saveButton: FloatingActionButton
     private var calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,15 +36,15 @@ class AddTodo : AppCompatActivity() {
 
         todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
 
-        editDueDate.setOnClickListener() {
+        editDueDate.setOnClickListener {
             setDueDate()
         }
 
-        editTime.setOnClickListener() {
+        editTime.setOnClickListener {
             setDueTime()
         }
 
-        saveButton.setOnClickListener() {
+        saveButton.setOnClickListener {
             saveTodo()
         }
 

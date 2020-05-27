@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +37,7 @@ class DashboardActivity : AppCompatActivity() {
             todoAdapter.setTodos(it)
         })
 
-        addButton.setOnClickListener() {
+        addButton.setOnClickListener {
             addTodo()
         }
 
@@ -76,6 +77,7 @@ class DashboardActivity : AppCompatActivity() {
                     alert.setPositiveButton("Yes"){dialog, _ ->
                         todoViewModel.deleteTodo(toDo)
                         dialog.dismiss()
+                        Toast.makeText(this, "To Do Deleted", Toast.LENGTH_SHORT).show()
                     }
                     alert.setNegativeButton("No"){dialog, _ ->
                         dialog.dismiss()
@@ -89,10 +91,10 @@ class DashboardActivity : AppCompatActivity() {
 
     private fun EditTodo(toDo: ToDo) {
         val intent = Intent(this, UpdateTodo::class.java)
-            .putExtra(UpdateTodo.TITLE_UPDATE, toDo.title)
-            .putExtra(UpdateTodo.NOTE_UPDATE, toDo.note)
-            .putExtra(UpdateTodo.DUE_DATE_UPDATE, toDo.dueDate)
-            .putExtra(UpdateTodo.TIME_UPDATE, toDo.dueHour)
+            intent.putExtra(UpdateTodo.TITLE_UPDATE, toDo.title)
+            intent.putExtra(UpdateTodo.NOTE_UPDATE, toDo.note)
+            intent.putExtra(UpdateTodo.DUE_DATE_UPDATE, toDo.dueDate)
+            intent.putExtra(UpdateTodo.TIME_UPDATE, toDo.dueHour)
 
         startActivity(intent)
     }

@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
 import java.text.SimpleDateFormat
@@ -20,7 +21,7 @@ class UpdateTodo : AppCompatActivity() {
     private lateinit var editNote: EditText
     private lateinit var editTime: EditText
     private lateinit var editDueDate: EditText
-    private lateinit var updateButton: Button
+    private lateinit var updateButton: FloatingActionButton
     private var calendar = Calendar.getInstance()
 
     // to get existing data from database for updating
@@ -47,15 +48,15 @@ class UpdateTodo : AppCompatActivity() {
         // get data for update
         getDatafromDatabase()
 
-        editDueDate.setOnClickListener() {
+        editDueDate.setOnClickListener {
             setDueDate()
         }
 
-        editTime.setOnClickListener() {
+        editTime.setOnClickListener {
             setDueTime()
         }
 
-        updateButton.setOnClickListener() {
+        updateButton.setOnClickListener {
             updateTodo()
         }
     }
@@ -67,7 +68,7 @@ class UpdateTodo : AppCompatActivity() {
     }
 
     private fun getDatafromDatabase() {
-        toDo = intent.getParcelableExtra("UPDATED_DATA")!!
+        toDo = intent.getParcelableExtra("UPDATED_LIST")!!
         editTitle.setText(intent.getStringExtra(TITLE_UPDATE))
         editNote.setText(intent.getStringExtra(NOTE_UPDATE))
         editDueDate.setText(intent.getStringExtra(DUE_DATE_UPDATE))
@@ -104,10 +105,10 @@ class UpdateTodo : AppCompatActivity() {
     }
 
     private fun updateTodo() {
-        val title = editTitle.text.toString().trim()
-        val note = editNote.text.toString().trim()
-        val dueDate = editDueDate.text.toString().trim()
-        val time = editTime.text.toString().trim()
+        toDo.title = editTitle.text.toString().trim()
+        toDo.note = editNote.text.toString().trim()
+        toDo.dueDate = editDueDate.text.toString().trim()
+        toDo.dueHour = editTime.text.toString().trim()
 
         todoViewModel.updateTodo(toDo)
         finish()
