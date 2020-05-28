@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import android.widget.Button
 import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
 import java.text.SimpleDateFormat
@@ -20,7 +20,7 @@ class AddTodo : AppCompatActivity() {
     private lateinit var editNote: EditText
     private lateinit var editTime: EditText
     private lateinit var editDueDate: EditText
-    private lateinit var saveButton: FloatingActionButton
+    private lateinit var saveButton: Button
     private var calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {

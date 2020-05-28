@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import android.widget.Button
 import id.ac.unhas.finalproject_todolist.R
 import id.ac.unhas.todolist.db.ToDo
 import java.text.SimpleDateFormat
@@ -21,7 +21,7 @@ class UpdateTodo : AppCompatActivity() {
     private lateinit var editNote: EditText
     private lateinit var editTime: EditText
     private lateinit var editDueDate: EditText
-    private lateinit var updateButton: FloatingActionButton
+    private lateinit var updateButton: Button
     private var calendar = Calendar.getInstance()
 
     // to get existing data from database for updating
@@ -36,10 +36,10 @@ class UpdateTodo : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update_todo)
 
-        editTitle = findViewById(R.id.title_content)
-        editNote = findViewById(R.id.notes_content)
-        editDueDate = findViewById(R.id.duedate_content)
-        editTime = findViewById(R.id.duetime_content)
+        editTitle = findViewById(R.id.update_title_content)
+        editNote = findViewById(R.id.update_notes_content)
+        editDueDate = findViewById(R.id.update_duedate_content)
+        editTime = findViewById(R.id.update_duetime_content)
         updateButton = findViewById(R.id.button_save)
 
         todoViewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
@@ -85,7 +85,7 @@ class UpdateTodo : AppCompatActivity() {
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DATE, date)
-            editTime.setText(SimpleDateFormat("dd, MM, yyyy").format(calendar.time))
+            editTime.setText(SimpleDateFormat("EEE, MMM dd, yyyy").format(calendar.time))
         }
 
         DatePickerDialog(this, datePicker, date, month, year).show()

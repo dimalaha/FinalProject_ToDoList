@@ -5,32 +5,54 @@
     tools:context=".ui.AddTodo"
     android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:actionBarSize"
-        android:background="@color/colorPrimaryDark" />
+    <TextView
+        android:id="@+id/add_todo_title"
+        android:layout_width="232dp"
+        android:layout_height="44dp"
+        android:text="Add To Do"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:textSize="35sp"
+        android:textColor="#000000"
+        />
+
+    <TextView
+        android:id="@+id/add_todo_subtitle"
+        android:layout_width="253dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_todo_title"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
+        android:text="What do you want to accomplish?"
+        android:textSize="16sp" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/add_todo_subtitle"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
-        android:layout_below="@id/toolbar"
         android:padding="30sp">
+
         <TextView
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/todo_title"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/title_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textCapSentences|textAutoCorrect"
+            android:layout_height="40dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"/>
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="@drawable/title_edit"
+            android:inputType="textCapSentences|textAutoCorrect" />
 
         <TextView
             android:id="@+id/duedate"
@@ -38,25 +60,39 @@
             android:layout_height="wrap_content"
             android:text="@string/duedate"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/duedate_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date"
-            android:layout_marginBottom="10dp"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/title_edit"
             android:clickable="true"
-            android:hint="@string/set_duedate"/>
+            android:inputType="date"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/duetime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/duetime"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/duetime_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="time"
-            android:layout_marginBottom="10dp"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/title_edit"
             android:clickable="true"
-            android:hint="@string/set_time"/>
+            android:inputType="time"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
 
         <TextView
             android:id="@+id/notes"
@@ -64,29 +100,31 @@
             android:layout_height="wrap_content"
             android:text="@string/todo_notes"
             android:textSize="15sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/notes_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapSentences|textAutoCorrect"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="5dp"/>
+            android:background="@drawable/note_edit"
+            android:inputType="textCapSentences|textAutoCorrect"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
 
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <Button
         android:id="@+id/button_save"
-        android:layout_width="84dp"
-        android:layout_height="70dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/ic_check"
-        android:tint="@android:color/white" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="325dp"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/done_button"
+        android:clickable="true" />
 
 </RelativeLayout>
 
