@@ -16,6 +16,26 @@ class TodoViewModel(application: Application) : AndroidViewModel(application) {
         todoRepository.AddTodos(toDo)
     }
 
+    fun searchByTitle(title: String) : LiveData<List<ToDo>>? {
+        return  todoRepository.searchByTitle(title)
+    }
+
+    fun sortDateCreatedDesc() : LiveData<List<ToDo>>? {
+        return todoRepository.sortDateCreatedDesc()
+    }
+
+    fun sortDateCreatedAscend() : LiveData<List<ToDo>>? {
+        return todoRepository.sortDateCreatedAscend()
+    }
+
+    fun sortDueDateDesc() : LiveData<List<ToDo>>? {
+        return todoRepository.sortDueDateDesc()
+    }
+
+    fun sortDueDateAscend() : LiveData<List<ToDo>>? {
+        return todoRepository.sortDueDateAscend()
+    }
+
     fun getTodos(): LiveData<List<ToDo>>? {
         return lists
     }

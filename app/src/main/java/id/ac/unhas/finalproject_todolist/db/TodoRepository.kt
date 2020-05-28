@@ -23,6 +23,26 @@ class TodoRepository (application: Application) {
         return lists
     }
 
+    fun searchByTitle(title: String) : LiveData<List<ToDo>>? {
+        return todoDao?.searchByTitle(title)
+    }
+
+    fun sortDateCreatedDesc() : LiveData<List<ToDo>>? {
+        return todoDao?.sortDateCreatedDesc()
+    }
+
+    fun sortDateCreatedAscend() : LiveData<List<ToDo>>? {
+        return todoDao?.sortDateCreatedAscend()
+    }
+
+    fun sortDueDateDesc() : LiveData<List<ToDo>>? {
+        return todoDao?.sortDueDateDesc()
+    }
+
+    fun sortDueDateAscend() : LiveData<List<ToDo>>? {
+        return todoDao?.sortDueDateAscend()
+    }
+
     fun AddTodos(toDo: ToDo) = runBlocking {
         this.launch(Dispatchers.IO) {
             todoDao?.addTodo(toDo)
