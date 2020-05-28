@@ -17,6 +17,7 @@ class DashboardActivity : AppCompatActivity() {
     private lateinit var todoViewModel: TodoViewModel
     private lateinit var todoAdapter: TodoAdapter
     private lateinit var addButton: Button
+  //  private lateinit var filterSortButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,10 @@ class DashboardActivity : AppCompatActivity() {
             addTodo()
         }
 
+//        filterSortButton.setOnClickListener {
+    //        sortList()
+    //    }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,16 +57,23 @@ class DashboardActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun sortList() {
+
+    }
+
     private fun showAlertMenu(toDo: ToDo) {
-        val items = arrayOf("Edit", "Delete")
+        val items = arrayOf("Done", "Edit", "Delete")
 
         val builder = AlertDialog.Builder(this)
         builder.setItems(items) { dialog, which ->
             when (which) {
                 0 -> {
-                    EditTodo(toDo)
+                    todoViewModel.deleteTodo(toDo)
                 }
                 1 -> {
+                    EditTodo(toDo)
+                }
+                2 -> {
                     todoViewModel.deleteTodo(toDo)
 
                 }

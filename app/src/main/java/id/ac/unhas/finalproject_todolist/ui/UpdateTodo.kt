@@ -80,15 +80,14 @@ class UpdateTodo : AppCompatActivity() {
         val year = calendar.get(Calendar.YEAR)
 
         // Date picker dialog
-        val datePicker = DatePickerDialog.OnDateSetListener{
-                view, year, month, date ->
+        val dateListener = DatePickerDialog.OnDateSetListener{ view, year, month, date ->
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DATE, date)
-            editTime.setText(SimpleDateFormat("EEE, MMM dd, yyyy").format(calendar.time))
+            editDueDate.setText(SimpleDateFormat("EEE, MMM dd, yyyy").format(calendar.time))
         }
 
-        DatePickerDialog(this, datePicker, date, month, year).show()
+        DatePickerDialog(this, dateListener, year, month, date).show()
     }
 
     private fun setDueTime(){
@@ -106,10 +105,9 @@ class UpdateTodo : AppCompatActivity() {
 
     private fun updateTodo() {
         val currentTime = ZonedDateTime.now()
-        val mill = currentTime.toInstant().epochSecond
-        val dateUpdated = mill.toInt()
+        val updatedDate = Converter.dateToInt(currentTime)
 
-        toDo.dateUpdated = dateUpdated
+        toDo.dateUpdated = updatedDate
         toDo.title = editTitle.text.toString().trim()
         toDo.note = editNote.text.toString().trim()
         toDo.dueDate = editDueDate.text.toString().trim()

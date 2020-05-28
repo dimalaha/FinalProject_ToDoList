@@ -61,15 +61,14 @@ class AddTodo : AppCompatActivity() {
         val year = calendar.get(Calendar.YEAR)
 
         // Date picker dialog
-        val datePicker = DatePickerDialog.OnDateSetListener{
-                view, year, month, date ->
+        val dateListener = DatePickerDialog.OnDateSetListener{ view, year, month, date ->
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DATE, date)
-            editTime.setText(SimpleDateFormat("dd, MM, yyyy").format(calendar.time))
-            }
+            editDueDate.setText(SimpleDateFormat("EEE, MMM dd, yyyy").format(calendar.time))
+        }
 
-        DatePickerDialog(this, datePicker, date, month, year).show()
+        DatePickerDialog(this, dateListener, year, month, date).show()
     }
 
     private fun setDueTime(){
@@ -87,13 +86,12 @@ class AddTodo : AppCompatActivity() {
 
     private fun saveTodo() {
         val currentTime = ZonedDateTime.now()
-        val mill = currentTime.toInstant().epochSecond
+        val createdDate = Converter.dateToInt(currentTime)
 
         val title = editTitle.text.toString().trim()
         val note = editNote.text.toString().trim()
         val dueDate = editDueDate.text.toString().trim()
         val time = editTime.text.toString().trim()
-        val createdDate = mill.toInt()
 
         todoViewModel.addTodos(
             ToDo(
