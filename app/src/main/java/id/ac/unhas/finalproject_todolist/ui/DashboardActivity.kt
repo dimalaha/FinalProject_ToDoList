@@ -63,21 +63,28 @@ class DashboardActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                filter(s.toString())
+                if (s.toString().isNotEmpty()) {
+                    filter(s.toString())
+                } else {
+                    todoViewModel.getTodos()?.observe(this@DashboardActivity, Observer {
+                        todoAdapter.setTodos(it)
+                    })
+                }
             }
         })
     }
 
     // fun to do filter if user want to search by filter
     private fun filter(text: String) {
-        val lists = listOf<String>()
-        val filteredList = ArrayList<String>()
+        val lists = listOf<ToDo>()
+        val filteredList = ArrayList<ToDo>()
 
         for (s in lists) {
-            if (s.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
+            if (s.title.toLowerCase(Locale.ROOT).contains(text.toLowerCase(Locale.ROOT))) {
                 filteredList.add(s)
             }
         }
+        
         todoViewModel.searchByTitle(text)?.observe(this, Observer {
             todoAdapter.filterList(it)
         })

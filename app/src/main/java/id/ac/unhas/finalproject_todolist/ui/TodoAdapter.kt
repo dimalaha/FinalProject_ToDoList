@@ -28,20 +28,20 @@ class TodoAdapter (private val context: Context?, private val listener: (ToDo, I
         )
     }
 
-    override fun getItemCount(): Int = list.size
-
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         if (context!= null) {
             holder.bindItem(context, list[position], listener)
         }
     }
 
-    fun setTodos(lists: List<ToDo>) {
+    override fun getItemCount(): Int = list.size
+
+    fun filterList(lists: List<ToDo>) {
         this.list = lists
         notifyDataSetChanged()
     }
 
-    fun filterList(lists: List<ToDo>) {
+    fun setTodos(lists: List<ToDo>) {
         this.list = lists
         notifyDataSetChanged()
     }
