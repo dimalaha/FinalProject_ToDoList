@@ -8,9 +8,7 @@
     <string name="todo_title">Title</string>
     <string name="todo_notes">Notes</string>
     <string name="duedate">Due Date</string>
-    <string name="set_duedate">Due Date</string>
-    <string name="set_time">Set Time</string>
-    <string name="at"> at </string>
+    <string name="at">at</string>
     <string name="duetime">Due Time</string>
     <string name="search_bar">Search by Title</string>
 </resources>
